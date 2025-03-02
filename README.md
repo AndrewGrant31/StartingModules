@@ -1,4 +1,4 @@
-# Starting C++ Modules
+﻿# Starting C++ Modules
 ## Andrew Grant   
 ## February 2025
 
@@ -18,6 +18,16 @@ comprising of three files:
         PrimaryModule.ixx
         Definition
             PrimaryModule.cpp
+   
+## The Code
+The code in this project cannot, in any shape or way, be 
+considered of professional level. It is, quite literally 
+example code. It is there to only demonstrate a purpose, 
+concept or requirement. 
+Please, do not use it to demonstrate professional level coding 
+standards, knowledge or skills. 
+It cannot, must not and can never stand up to scrutiny as 
+anything other than basic example code. 
 
 ## Using This Project
 In order to utilise this project, within <b>Visual Studio</b>,
