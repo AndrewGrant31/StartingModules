@@ -16,9 +16,7 @@ comprising of three files:
         StartingModules.cpp
     PrimaryModule
         PrimaryModule.ixx
-        Definition
-            PrimaryModule.cpp
-   
+
 ## The Code
 The code in this project cannot, in any shape or way, be 
 considered of professional level. It is, quite literally 
