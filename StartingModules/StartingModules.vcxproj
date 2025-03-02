@@ -156,7 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PrimaryModule\Definition\PrimaryModule.cpp" />
     <ClCompile Include="PrimaryModule\PrimaryModule.ixx" />
     <ClCompile Include="StartingModules.cpp" />
   </ItemGroup>
