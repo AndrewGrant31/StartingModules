@@ -1,6 +1,6 @@
-import PrimaryModule;
-
 import std;
+
+import PrimaryModule;
 
 auto main ( int argc, char* argv [ ] ) -> int
 {
@@ -10,5 +10,5 @@ auto main ( int argc, char* argv [ ] ) -> int
 		std::string {}
 	) };
 
-	std::println ( "{}", sayHello->Get ( ) );
+	std::println ( "{}", sayHello->SalutationWithAcknowledgement ( ) );
 }

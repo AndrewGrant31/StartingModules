@@ -2,35 +2,147 @@ export module PrimaryModule;
 
 export import std;
 
+#pragma region Immutable Variables
+namespace ImmutableVariables
+{
+	template <typename T> requires
+		std::same_as<T, std::string> or
+		std::same_as<T, std::string_view>
+		class Immutable
+	{
+	private:
+		const T exclamation_{ "!" };
+		const T hello_{ "Hello " };
+		const T world_{ "World!" };
+
+	public:
+		T Exclamation{ exclamation_ };
+		T Hello{ hello_ };
+		T World{ world_ };
+	};
+}
+#pragma endregion Immutable Variables
+#pragma region Mutable Variables
+namespace MutableVariables
+{
+	template <typename T> requires
+		std::same_as<T, std::string> or
+		std::same_as<T, std::string_view>
+		class Mutable
+	{
+	private:
+		T value_;
+
+	public:
+		explicit Mutable(const T& _) :
+			value_{ _ }
+		{
+
+		}
+
+		T Value{ value_ };
+	};
+}
+#pragma endregion Mutable Variables
+
+#pragma region Public
 export namespace PrimaryModule
 {
 	class SayHello
 	{
 	private:
-		const std::string exclamation_{ "!" };
-		const std::string hello_{ "Hello " };
-		const std::string world_{ "World!" };
-		std::string who_ { };
+		std::unique_ptr<MutableVariables::Mutable<std::string>> who_uptr;
+		std::unique_ptr<ImmutableVariables::Immutable<std::string>> immutable_uptr{
+			std::make_unique<ImmutableVariables::Immutable<std::string>>()};
+
+		auto Exclamation() noexcept -> const auto
+		{
+			return immutable_uptr->Exclamation;
+		}
+		auto Hello() noexcept -> const auto
+		{
+			return immutable_uptr->Hello;
+		}
+		auto World() noexcept -> const auto
+		{
+			return immutable_uptr->World;
+		}
+		auto Who() noexcept -> const auto
+		{
+			return who_uptr->Value;
+		}
 
 		auto Set(const std::string& _) noexcept -> auto
 		{
 			return _.empty() ?
-				world_ :
-				(_.ends_with(exclamation_) ?
+				World() :
+				(_.ends_with(Exclamation()) ?
 					_ :
-					_ + exclamation_);
+					_ + Exclamation());
 		}
 
 	public:
-		explicit SayHello ( const std::optional<std::string>& _ = std::nullopt ) :
-			who_{ Set(_.value_or(std::string{})) }
+		explicit SayHello(const std::optional<std::string>& _ = std::nullopt) :
+			who_uptr{ 
+			std::make_unique < MutableVariables::Mutable<std::string>>(
+			Set(_.value_or(std::string{}))) }
 		{
 
 		}
 
-		auto Get ( ) noexcept -> const std::string
+		auto SalutationWithAcknowledgement() noexcept -> const std::string
 		{
-			return hello_ + who_;
+			return  Hello() + Who();
 		}
+
 	};
 }
+#pragma endregion Public
+
+#pragma region Private
+//module : private;
+
+//auto PrimaryModule::SayHello::Exclamation() noexcept -> const auto
+//{
+//	return immutable_uptr->Exclamation();
+//}
+//auto PrimaryModule::SayHello::Hello() noexcept -> const auto
+//{
+//	return immutable_uptr->Hello();
+//}
+//auto PrimaryModule::SayHello::World() noexcept -> const auto
+//{
+//	return immutable_uptr->World();
+//}
+//
+//auto PrimaryModule::SayHello::Who() noexcept -> const auto
+//{
+//	return who_;
+//}
+//
+//#pragma region Private Setter
+//auto PrimaryModule::SayHello::Set(const std::string& _) noexcept -> auto
+//{
+//	return _.empty() ?
+//		World() :
+//		(_.ends_with(Exclamation()) ?
+//			_ :
+//			_ + Exclamation());
+//}
+//#pragma endregion Private Setter
+//
+//#pragma region Public Interface
+//PrimaryModule::SayHello::SayHello(const std::optional<std::string>& _) :
+//	who_{ Set(_.value_or(std::string{})) }
+//{
+//
+//}
+//
+//auto PrimaryModule::SayHello::SalutationWithAcknowledgement() noexcept -> 
+// const std::string
+//{
+//	return Hello() + Who();
+//}
+//#pragma endregion Public Interface
+
+#pragma endregion Private
