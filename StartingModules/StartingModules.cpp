@@ -4,11 +4,11 @@ import PrimaryModule;
 
 auto main ( int argc, char* argv [ ] ) -> int
 {
-	auto sayHello { std::make_unique<PrimaryModule::SayHello> (
+	auto helloToWhom { std::make_unique<PrimaryModule::HelloToWhom> (
 		argc == 2 ?
 		std::string{argv [ 1 ] } :
 		std::string {}
 	) };
 
-	std::println ( "{}", sayHello->SalutationWithAcknowledgement ( ) );
+	std::println ( "{}", helloToWhom->SalutationWithAcknowledgement ( ) );
 }
