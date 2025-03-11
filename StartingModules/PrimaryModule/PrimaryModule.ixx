@@ -15,20 +15,17 @@ export namespace PrimaryModule
 		auto Set(const std::string& _) noexcept -> auto
 		{
 			return _.empty() ? world_ : _ + exclamation_;
-
 		}
 
 	public:
 		explicit HelloToWhom(const std::optional<std::string>& _ = std::nullopt) :
 			who_{ Set(_.value_or(std::string{})) }
 		{
-
 		}
 
 		auto SalutationWithAcknowledgement() noexcept -> const std::string
 		{
 			return hello_ + who_;
 		}
-
 	};
 }
