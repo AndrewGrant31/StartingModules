@@ -18,7 +18,8 @@ export namespace PrimaryModule
 		}
 
 	public:
-		explicit HelloToWhom(const std::optional<std::string>& _ = std::nullopt) :
+		explicit HelloToWhom(const 
+			std::optional<std::string>& _ = std::nullopt) :
 			who_{ Set(_.value_or(std::string{})) }
 		{
 		}
