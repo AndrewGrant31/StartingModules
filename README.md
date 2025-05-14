@@ -4,7 +4,7 @@
 
 ## Introduction
 The code contained in this repository is in support of 
-a ([YouTube][https://www.youtube.com/watch?v=b1iKduyPiJE&list=PLVwTYwpsQZ9tsUK-HvRdSkOFImNDLHrUp&index=2]) series, 
+a [YouTube](https://www.youtube.com/watch?v=b1iKduyPiJE&list=PLVwTYwpsQZ9tsUK-HvRdSkOFImNDLHrUp&index=2]) series, 
 in which we look at C++ modules.
 
 ## About this project
